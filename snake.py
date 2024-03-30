@@ -54,13 +54,6 @@ class Snake:
         self.seg_list.append(new_segment)
 
 
-    def eat_food(self, food, scoreboard):
-        if round(self.head.xcor()) == food.x and round(self.head.ycor()) == food.y:
-            self.add_segment()
-            food.change_food(food)
-            scoreboard.add_score()
-
-
     def game_over(self):
         if round(self.head.xcor()) >= 300 or round(self.head.xcor()) <= (-300):
             return False
