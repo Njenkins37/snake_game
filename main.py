@@ -22,11 +22,19 @@ if __name__ == '__main__':
     food = Food()
     scoreboard = Scoreboard()
 
+
     while game_is_on:
+        scoreboard.write(f'Score: {scoreboard.score}', move=False, align='center', font=('times new roman', 24, 'bold'))
         screen.update()
         time.sleep(0.1)
         snake.move()
-        snake.eat_food(food, scoreboard)
+        if snake.head.distance(food) < 15:
+            food.refresh()
+            snake.add_segment()
+            scoreboard.add_score()
+            scoreboard.clear()
+
+
         game_is_on = snake.game_over()
 
     screen.exitonclick()
