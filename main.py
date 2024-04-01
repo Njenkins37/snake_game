@@ -21,10 +21,10 @@ if __name__ == '__main__':
     game_is_on = True
     food = Food()
     scoreboard = Scoreboard()
+    scoreboard.hideturtle()
 
 
     while game_is_on:
-        scoreboard.write(f'Score: {scoreboard.score}', move=False, align='center', font=('times new roman', 24, 'bold'))
         screen.update()
         time.sleep(0.1)
         snake.move()
@@ -33,8 +33,14 @@ if __name__ == '__main__':
             snake.add_segment()
             scoreboard.add_score()
             scoreboard.clear()
+        scoreboard.update_scoreboard()
+        if round(snake.head.xcor()) >= 300 or round(snake.head.xcor()) <= (-300):
+            snake.reset()
+            scoreboard.reset()
+        if round(snake.head.ycor()) >= 300 or round(snake.head.ycor()) <= (-300):
+            snake.reset()
+            scoreboard.reset()
 
 
-        game_is_on = snake.game_over()
 
     screen.exitonclick()

@@ -9,6 +9,7 @@ class Snake:
     def __init__(self):
         self.turtle = None
         self.seg_list = []
+        self.high_score = 0
         self.create_snake()
         self.head = self.seg_list[0]
 
@@ -53,6 +54,12 @@ class Snake:
         new_segment.goto(x, y)
         self.seg_list.append(new_segment)
 
+    def reset(self):
+        for seg in self.seg_list:
+            seg.goto(1000, 1000)
+        self.seg_list.clear()
+        self.create_snake()
+        self.head = self.seg_list[0]
 
     def game_over(self):
         if round(self.head.xcor()) >= 300 or round(self.head.xcor()) <= (-300):
